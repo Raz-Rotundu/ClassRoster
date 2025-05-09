@@ -1,5 +1,8 @@
 package com.lumius.ClassRoster.controller;
 
+import com.lumius.ClassRoster.dao.ClassRosterDao;
+import com.lumius.ClassRoster.dao.ClassRosterDaoFileImpl;
+import com.lumius.ClassRoster.dto.Student;
 import com.lumius.ClassRoster.ui.ClassRosterView;
 import com.lumius.ClassRoster.ui.UserIO;
 import com.lumius.ClassRoster.ui.UserIOConsoleImpl;
@@ -12,6 +15,7 @@ import com.lumius.ClassRoster.ui.UserIOConsoleImpl;
 public class ClassRosterController {
 	
 	private ClassRosterView view = new ClassRosterView();
+	private ClassRosterDao dao = new ClassRosterDaoFileImpl();
 	private UserIO io = new UserIOConsoleImpl();
 	
 	public void run() {
@@ -26,7 +30,7 @@ public class ClassRosterController {
 					io.print("LIST STUDENTS");
 					break;
 				case 2:
-					io.print("CREATE STUDENT");
+					createStudent();
 					break;
 				case 3:
 					io.print("VIEW STUDENT");
@@ -45,6 +49,22 @@ public class ClassRosterController {
 //		io.close();
 	}
 	
+	/**
+	 * Orchestrates the creation of a new student by getting user input from view,
+	 * creating Student DTO and adding it to DAO, then having view display the relevant success banners.
+	 */
+	private void createStudent() {
+		view.displayCreateStudentBanner();
+		Student newStudent = view.getNewStudentInfo();
+		dao.addStudent(newStudent.getStudentID(), newStudent);
+		view.displayCreateSuccessBanner();
+		
+	}
+	
+	/**
+	 * Uses the view to print the options menu
+	 * @return the selection the user chose
+	 */
 	private int getMenuSelection() {
 		return view.printMenuAndGetSelection();
 	}

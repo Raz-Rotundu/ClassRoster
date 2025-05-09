@@ -1,5 +1,37 @@
 package com.lumius.ClassRoster.dao;
 
-public class ClassRosterDaoFileImpl {
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+
+import com.lumius.ClassRoster.dto.Student;
+
+/**
+ * DAO implementation class for the ClassRoster.
+ * Stores roster entries as a map, reads and writes roster to file
+ */
+public class ClassRosterDaoFileImpl implements ClassRosterDao{
+
+	private final Map<String, Student> students = new HashMap<>();
+	
+	@Override
+	public Student addStudent(String studentID, Student student) {
+		return students.put(studentID, student);
+	}
+
+	@Override
+	public List<Student> getAllStudents() {
+		throw new UnsupportedOperationException("Not supported yet");
+	}
+
+	@Override
+	public Student getStudent(String studentID) {
+		throw new UnsupportedOperationException("Not supported yet");
+	}
+
+	@Override
+	public Student removeStudent(String studentID) {
+		throw new UnsupportedOperationException("Not supported yet");
+	}
 
 }
