@@ -53,30 +53,30 @@ public interface UserIO {
 	 * @param prompt the message prompting the user
 	 * @param min the upper bound of the range
 	 * @param max the lower bound of the range
-	 * @return the integet the user entered
+	 * @return the integer the user entered
 	 */
 	int readInt(String prompt, int min, int max);
 	
 	/**
-	 * 
-	 * @param prompt
-	 * @return
+	 * Prompts the user to enter a long, then returns the number entered
+	 * @param prompt the prompt displayed to screen
+	 * @return the long the user entered
 	 */
 	long readLong(String prompt);
 	
 	/**
-	 * 
-	 * @param prompt
-	 * @param min
-	 * @param max
-	 * @return
+	 * Verifies that the entered long is within a certain range, and repeatedly prompts the user to enter number if not in range
+	 * @param prompt the prompt displayed to screen
+	 * @param min the upper bound of the range
+	 * @param max the lower bound of the range
+	 * @return the long that the user entered
 	 */
 	long readLong(String prompt, long min, long max);
 	
 	/**
-	 * 
-	 * @param prompt
-	 * @return
+	 * Prompts the user to enter a string, then returns the input
+	 * @param prompt the message displayed to screen
+	 * @return the string the user entered
 	 */
 	String readString(String prompt);
 	

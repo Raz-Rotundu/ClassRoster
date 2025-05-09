@@ -1,13 +1,16 @@
 package com.lumius.ClassRoster;
 
+import com.lumius.ClassRoster.controller.ClassRosterController;
+
 /**
- * Hello world!
- *
+ * Program entry point.
+ * Instantiates the controller and calls run to begin the program
  */
 public class App 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        ClassRosterController controller = new ClassRosterController();
+        controller.run();
     }
 }
