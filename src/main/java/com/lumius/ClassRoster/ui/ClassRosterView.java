@@ -71,11 +71,27 @@ public class ClassRosterView {
 		io.readString("Press enter to continue.");
 	}
 	
+	public void displayRemoveResult(Student studentRecord) {
+		if(studentRecord != null) {
+			io.print("Student removed");
+		} else {
+			io.print("No such student");
+		}
+		io.readString("Press enter to continue.");
+	}
+	
+	/**
+	 * Prints banner indicating next interaction is for removing student
+	 */
+	public void displayRemoveStudentBanner() {
+		io.print("=== Remove Student ===");
+	}
+	
 	/**
 	 * Prints banner indicating next interaction is for getting student info
 	 */
 	public void displayDisplayStudentBanner() {
-		
+		io.print("=== Display Student ===");
 	}
 	
 	/**

@@ -38,7 +38,7 @@ public class ClassRosterController {
 					viewStudent();
 					break;
 				case 4:
-					io.print("REMOVE STUDENT");
+					removeStudent();
 					break;
 				case 5:
 					keepGoing = false;
@@ -48,8 +48,8 @@ public class ClassRosterController {
 			}
 		}
 		io.print("GOODBYE");
-//		io.close();
 	}
+	
 	
 	/**
 	 * Orchestrates the creation of a new student by getting user input from view,
@@ -82,6 +82,15 @@ public class ClassRosterController {
 		view.displayStudent(student);
 	}
 	
+	/**
+	 * Get chosen ID from view, remove that student from the dao, then display the results
+	 */
+	private void removeStudent() {
+		view.displayRemoveStudentBanner();
+		String id = view.getStudentIdChoice();
+		Student removedStudent = dao.removeStudent(id);
+		view.displayRemoveResult(removedStudent);
+	}
 	/**
 	 * Uses the view to print the options menu
 	 * @return the selection the user chose
