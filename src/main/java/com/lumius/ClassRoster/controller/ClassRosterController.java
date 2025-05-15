@@ -1,5 +1,7 @@
 package com.lumius.ClassRoster.controller;
 
+import java.util.List;
+
 import com.lumius.ClassRoster.dao.ClassRosterDao;
 import com.lumius.ClassRoster.dao.ClassRosterDaoFileImpl;
 import com.lumius.ClassRoster.dto.Student;
@@ -27,7 +29,7 @@ public class ClassRosterController {
 			
 			switch(menuSelection) {
 				case 1: 
-					io.print("LIST STUDENTS");
+					listStudents();
 					break;
 				case 2:
 					createStudent();
@@ -61,6 +63,14 @@ public class ClassRosterController {
 		
 	}
 	
+	/**
+	 * Orchestrates displaying of new student by getting list of students from DAO, and passing it to view
+	 */
+	private void listStudents() {
+		view.displayDisplayAllBanner();
+		List<Student> studentList = dao.getAllStudents();
+		view.displayStudentList(studentList);
+	}
 	/**
 	 * Uses the view to print the options menu
 	 * @return the selection the user chose

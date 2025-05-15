@@ -2,11 +2,16 @@ package com.lumius.ClassRoster.ui;
 
 import com.lumius.ClassRoster.dto.Student;
 
+import java.util.List;
+
+import com.lumius.ClassRoster.dao.*;
+
 /**
  * Class representing the view level of the MVC paradigm
  * Displays the menu and gets the user's selection
  */
 public class ClassRosterView {
+	private ClassRosterDao dao = new ClassRosterDaoFileImpl();
 	private UserIO io = new UserIOConsoleImpl();
 	
 	public int printMenuAndGetSelection() {
@@ -34,10 +39,29 @@ public class ClassRosterView {
 	}
 	
 	/**
+	 * Takes a list of students and displays the information about each student to the console
+	 * @param studentList
+	 */
+	public void displayStudentList(List<Student> studentList) {
+		for (Student currentStudent : studentList) {
+			String studentInfo = String.format("#%s : %s %s, %s", 
+					currentStudent.getStudentID(),
+					currentStudent.getFirstName(),
+					currentStudent.getLastName(),
+					currentStudent.getCohort());
+			io.print(studentInfo);
+		}
+		io.readString("Press Enter to continue");
+	}
+	
+	public void displayDisplayAllBanner() {
+		io.print("=== Display All Students ===");
+	}
+	/**
 	 * Prints a banner indicating the next interaction will be for creating a student
 	 */
 	public void displayCreateStudentBanner() {
-		io.print("=+= Create Student ==+");
+		io.print("+== Create Student ==+");
 	}
 	
 	/**

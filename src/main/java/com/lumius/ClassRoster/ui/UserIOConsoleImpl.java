@@ -2,6 +2,9 @@ package com.lumius.ClassRoster.ui;
 
 import java.util.Scanner;
 
+/**
+ * UserIOConsoleImple -- Console based implementation of the UserIO interface,
+ */
 public class UserIOConsoleImpl implements UserIO {
 
 	final private Scanner console = new Scanner(System.in);
