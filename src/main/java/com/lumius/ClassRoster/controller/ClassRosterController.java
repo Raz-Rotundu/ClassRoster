@@ -35,7 +35,7 @@ public class ClassRosterController {
 					createStudent();
 					break;
 				case 3:
-					io.print("VIEW STUDENT");
+					viewStudent();
 					break;
 				case 4:
 					io.print("REMOVE STUDENT");
@@ -71,6 +71,17 @@ public class ClassRosterController {
 		List<Student> studentList = dao.getAllStudents();
 		view.displayStudentList(studentList);
 	}
+	
+	/**
+	 * Gets user's chosen ID from the view, uses to retrieve correct Student object from dao, then passes it back to view
+	 */
+	private void viewStudent() {
+		view.displayDisplayStudentBanner();
+		String id = view.getStudentIdChoice();
+		Student student = dao.getStudent(id);
+		view.displayStudent(student);
+	}
+	
 	/**
 	 * Uses the view to print the options menu
 	 * @return the selection the user chose

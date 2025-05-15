@@ -54,6 +54,42 @@ public class ClassRosterView {
 		io.readString("Press Enter to continue");
 	}
 	
+	/**
+	 * Displays a single student's information to the user
+	 * @param student The student whose information is being displayed
+	 */
+	public void displayStudent(Student student) {
+		if (student != null) {
+			io.print(student.getStudentID());
+			io.print(student.getFirstName());
+			io.print(student.getLastName());
+			io.print(student.getCohort());
+			io.print("");
+		} else {
+			io.print("No such student.");
+		}
+		io.readString("Press enter to continue.");
+	}
+	
+	/**
+	 * Prints banner indicating next interaction is for getting student info
+	 */
+	public void displayDisplayStudentBanner() {
+		
+	}
+	
+	/**
+	 * Asks user for ID of the students to display
+	 * @return the ID chosen by the user
+	 */
+	public String getStudentIdChoice() {
+		return io.readString("Enter the Student ID");
+	}
+	
+	
+	/**
+	 * Prints banner indication next interaction is for getting all students in roster
+	 */
 	public void displayDisplayAllBanner() {
 		io.print("=== Display All Students ===");
 	}
