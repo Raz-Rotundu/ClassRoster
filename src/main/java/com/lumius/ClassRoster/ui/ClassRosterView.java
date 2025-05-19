@@ -12,7 +12,15 @@ import com.lumius.ClassRoster.dao.*;
  */
 public class ClassRosterView {
 	private ClassRosterDao dao = new ClassRosterDaoFileImpl();
-	private UserIO io = new UserIOConsoleImpl();
+	final UserIO io;
+	
+	/**
+	 * Constructor implementing dependency injection
+	 * @param io the UserIO implementation to use
+	 */
+	public ClassRosterView(UserIO io) {
+		this.io = io;
+	}
 	
 	public int printMenuAndGetSelection() {
 		io.print("Main Menu");
@@ -71,6 +79,10 @@ public class ClassRosterView {
 		io.readString("Press enter to continue.");
 	}
 	
+	/**
+	 * Displays the results of a student removal to console
+	 * @param studentRecord the student which was removed
+	 */
 	public void displayRemoveResult(Student studentRecord) {
 		if(studentRecord != null) {
 			io.print("Student removed");
@@ -78,6 +90,21 @@ public class ClassRosterView {
 			io.print("No such student");
 		}
 		io.readString("Press enter to continue.");
+	}
+	
+	
+	/**
+	 * Prints banner with goodbye message
+	 */
+	public void displayExitBanner() {
+		io.print("Bye");
+	}
+	
+	/**
+	 * Prints banner indicating unknown commmand
+	 */
+	public void displayUnknownCmdBanner() {
+		io.print("Unknown command!");
 	}
 	
 	/**

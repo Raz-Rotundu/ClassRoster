@@ -16,9 +16,21 @@ import com.lumius.ClassRoster.ui.UserIOConsoleImpl;
  */
 public class ClassRosterController {
 	
-	private ClassRosterView view = new ClassRosterView();
-	private ClassRosterDao dao = new ClassRosterDaoFileImpl();
+
+	
+	private ClassRosterView view;
+	private ClassRosterDao dao;
 	private UserIO io = new UserIOConsoleImpl();
+	
+	/**
+	 * Constructor using dependancy injection
+	 * @param view the implementation of ClassRosterView
+	 * @param dao the implementation of ClassRosterDao
+	 */
+	public ClassRosterController(ClassRosterView view, ClassRosterDao dao) {
+		this.view = view;
+		this.dao = dao;
+	}
 	
 	public void run() {
 		boolean keepGoing = true;
@@ -44,10 +56,10 @@ public class ClassRosterController {
 					keepGoing = false;
 					break;
 				default:
-					io.print("UNKNOWN COMMAND");
+					unknownCommand();
 			}
 		}
-		io.print("GOODBYE");
+		exitMessage();
 	}
 	
 	
@@ -99,5 +111,17 @@ public class ClassRosterController {
 		return view.printMenuAndGetSelection();
 	}
 	
-
+	/**
+	 * Displays Unknown command banner in the view
+	 */
+	private void unknownCommand() {
+		view.displayUnknownCmdBanner();
+	}
+	
+	/**
+	 * Displays goodbye message in the view
+	 */
+	private void exitMessage() {
+		view.displayExitBanner();
+	}
 }
