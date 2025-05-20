@@ -4,13 +4,13 @@ package com.lumius.ClassRoster.dao;
  * Custom exception class for ClassRoster
  * Hides implementation exceptions
  */
-public class ClassRosterDaoException extends Exception {
+public class ClassRosterPersistenceException extends Exception {
 	
 	/**
 	 * Constructor for when something has gone wrong, but wasn't caused by another exception
 	 * @param message error message
 	 */
-	public ClassRosterDaoException(String message) {
+	public ClassRosterPersistenceException(String message) {
 		super(message);
 	}
 	
@@ -19,7 +19,7 @@ public class ClassRosterDaoException extends Exception {
 	 * @param message the error message
 	 * @param cause the underlying cause for error
 	 */
-	public ClassRosterDaoException(String message, Throwable cause) {
+	public ClassRosterPersistenceException(String message, Throwable cause) {
 		super(message, cause);
 	}
 }

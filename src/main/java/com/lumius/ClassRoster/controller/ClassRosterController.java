@@ -3,7 +3,7 @@ package com.lumius.ClassRoster.controller;
 import java.util.List;
 
 import com.lumius.ClassRoster.dao.ClassRosterDao;
-import com.lumius.ClassRoster.dao.ClassRosterDaoException;
+import com.lumius.ClassRoster.dao.ClassRosterPersistenceException;
 import com.lumius.ClassRoster.dao.ClassRosterDaoFileImpl;
 import com.lumius.ClassRoster.dto.Student;
 import com.lumius.ClassRoster.ui.ClassRosterView;
@@ -62,7 +62,7 @@ public class ClassRosterController {
 				}
 			}
 			exitMessage();
-		} catch (ClassRosterDaoException e) {
+		} catch (ClassRosterPersistenceException e) {
 			view.displayErrorMessage(e.getMessage());
 		}
 	}
@@ -72,7 +72,7 @@ public class ClassRosterController {
 	 * Orchestrates the creation of a new student by getting user input from view,
 	 * creating Student DTO and adding it to DAO, then having view display the relevant success banners.
 	 */
-	private void createStudent() throws ClassRosterDaoException {
+	private void createStudent() throws ClassRosterPersistenceException {
 		view.displayCreateStudentBanner();
 		Student newStudent = view.getNewStudentInfo();
 		dao.addStudent(newStudent.getStudentID(), newStudent);
@@ -83,7 +83,7 @@ public class ClassRosterController {
 	/**
 	 * Orchestrates displaying of new student by getting list of students from DAO, and passing it to view
 	 */
-	private void listStudents() throws ClassRosterDaoException {
+	private void listStudents() throws ClassRosterPersistenceException {
 		view.displayDisplayAllBanner();
 		List<Student> studentList = dao.getAllStudents();
 		view.displayStudentList(studentList);
@@ -92,7 +92,7 @@ public class ClassRosterController {
 	/**
 	 * Gets user's chosen ID from the view, uses to retrieve correct Student object from dao, then passes it back to view
 	 */
-	private void viewStudent() throws ClassRosterDaoException {
+	private void viewStudent() throws ClassRosterPersistenceException {
 		view.displayDisplayStudentBanner();
 		String id = view.getStudentIdChoice();
 		Student student = dao.getStudent(id);
@@ -102,7 +102,7 @@ public class ClassRosterController {
 	/**
 	 * Get chosen ID from view, remove that student from the dao, then display the results
 	 */
-	private void removeStudent() throws ClassRosterDaoException {
+	private void removeStudent() throws ClassRosterPersistenceException {
 		view.displayRemoveStudentBanner();
 		String id = view.getStudentIdChoice();
 		Student removedStudent = dao.removeStudent(id);
