@@ -46,6 +46,11 @@ public class ClassRosterView {
 		return currentStudent;
 	}
 	
+	public void displayErrorMessage(String errorMsg) {
+		io.print("== ERROR ==");
+		io.print(errorMsg);
+	}
+	
 	/**
 	 * Takes a list of students and displays the information about each student to the console
 	 * @param studentList
