@@ -50,7 +50,7 @@ public class ClassRosterServiceLayerImpl implements ClassRosterServiceLayer{
 	public Student removeStudent(String studentId) throws ClassRosterPersistenceException {
 		Student removedStudent =  dao.removeStudent(studentId);
 		
-		auditDao .writeAuditEntry("Student " + student.getStudentID() + " DELETED.");
+		auditDao .writeAuditEntry("Student " + removedStudent.getStudentID() + " DELETED.");
 		
 		return removedStudent;
 	}
