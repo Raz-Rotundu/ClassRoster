@@ -2,15 +2,19 @@ package com.lumius.ClassRoster.service;
 
 import java.util.List;
 
+import com.lumius.ClassRoster.dao.ClassRosterAuditDao;
 import com.lumius.ClassRoster.dao.ClassRosterDao;
 import com.lumius.ClassRoster.dao.ClassRosterPersistenceException;
 import com.lumius.ClassRoster.dto.Student;
 
 public class ClassRosterServiceLayerImpl implements ClassRosterServiceLayer{
 	ClassRosterDao dao;
+	private final ClassRosterAuditDao auditDao;
 	
-	public ClassRosterServiceLayerImpl(ClassRosterDao dao) {
+	public ClassRosterServiceLayerImpl(ClassRosterDao dao, ClassRosterAuditDao auditDao) {
 		this.dao = dao;
+		this.auditDao = auditDao;
+		
 	}
 	
 	@Override
@@ -28,6 +32,8 @@ public class ClassRosterServiceLayerImpl implements ClassRosterServiceLayer{
 		
 		
 		dao.addStudent(student.getStudentID(), student);
+		
+		auditDao.writeAuditEntry("Student " + student.getStudentID() + " CREATED.");
 	}
 
 	@Override
@@ -42,7 +48,11 @@ public class ClassRosterServiceLayerImpl implements ClassRosterServiceLayer{
 
 	@Override
 	public Student removeStudent(String studentId) throws ClassRosterPersistenceException {
-		return dao.removeStudent(studentId);
+		Student removedStudent =  dao.removeStudent(studentId);
+		
+		auditDao .writeAuditEntry("Student " + student.getStudentID() + " DELETED.");
+		
+		return removedStudent;
 	}
 	
 	/**

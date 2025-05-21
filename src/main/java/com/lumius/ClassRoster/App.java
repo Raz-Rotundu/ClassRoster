@@ -6,8 +6,11 @@ import com.lumius.ClassRoster.ui.UserIO;
 import com.lumius.ClassRoster.ui.UserIOConsoleImpl;
 import com.lumius.ClassRoster.dao.ClassRosterDao;
 import com.lumius.ClassRoster.dao.ClassRosterDaoFileImpl;
+import com.lumius.ClassRoster.dao.ClassRosterAuditDao;
+import com.lumius.ClassRoster.dao.ClassRosterAuditDaoFileImpl;
 import com.lumius.ClassRoster.service.ClassRosterServiceLayer;
 import com.lumius.ClassRoster.service.ClassRosterServiceLayerImpl;
+
 
 /**
  * Program entry point.
@@ -19,8 +22,11 @@ public class App
     {
     	UserIO myIo = new UserIOConsoleImpl();
     	ClassRosterView myView = new ClassRosterView(myIo);
+    	
     	ClassRosterDao myDao = new ClassRosterDaoFileImpl();
-    	ClassRosterServiceLayer myService = new ClassRosterServiceLayerImpl();
+    	ClassRosterAuditDao myAuditDao = new ClassRosterAuditDaoFileImpl();
+    	ClassRosterServiceLayer myService = new ClassRosterServiceLayerImpl(myDao, myAuditDao);
+    	
         ClassRosterController controller = new ClassRosterController(myView, myService);
         controller.run();
     }
