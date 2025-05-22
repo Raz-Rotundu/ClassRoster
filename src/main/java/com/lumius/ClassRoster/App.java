@@ -1,16 +1,9 @@
 package com.lumius.ClassRoster;
 
-import com.lumius.ClassRoster.controller.ClassRosterController;
-import com.lumius.ClassRoster.ui.ClassRosterView;
-import com.lumius.ClassRoster.ui.UserIO;
-import com.lumius.ClassRoster.ui.UserIOConsoleImpl;
-import com.lumius.ClassRoster.dao.ClassRosterDao;
-import com.lumius.ClassRoster.dao.ClassRosterDaoFileImpl;
-import com.lumius.ClassRoster.dao.ClassRosterAuditDao;
-import com.lumius.ClassRoster.dao.ClassRosterAuditDaoFileImpl;
-import com.lumius.ClassRoster.service.ClassRosterServiceLayer;
-import com.lumius.ClassRoster.service.ClassRosterServiceLayerImpl;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.lumius.ClassRoster.controller.ClassRosterController;
 
 /**
  * Program entry point.
@@ -20,14 +13,10 @@ public class App
 {
     public static void main( String[] args )
     {
-    	UserIO myIo = new UserIOConsoleImpl();
-    	ClassRosterView myView = new ClassRosterView(myIo);
+    	ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
     	
-    	ClassRosterDao myDao = new ClassRosterDaoFileImpl();
-    	ClassRosterAuditDao myAuditDao = new ClassRosterAuditDaoFileImpl();
-    	ClassRosterServiceLayer myService = new ClassRosterServiceLayerImpl(myDao, myAuditDao);
-    	
-        ClassRosterController controller = new ClassRosterController(myView, myService);
+    	ClassRosterController controller = ctx.getBean("controller", ClassRosterController.class);
         controller.run();
+        
     }
 }

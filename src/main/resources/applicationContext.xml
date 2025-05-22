@@ -8,4 +8,26 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd">
        
    <!-- your beans here -->
+   <bean id="userIO" class="com.lumius.ClassRoster.ui.UserIOConsoleImpl"></bean>
+   
+   <bean id ="view" class="com.lumius.ClassRoster.ui.ClassRosterView">
+   		<constructor-arg ref="userIO"/>
+   </bean>
+   
+   <bean id="classRosterDao"
+   		class="com.lumius.ClassRoster.dao.ClassRosterDaoFileImpl"/>
+   		
+   <bean id="auditDao"
+   		class="com.lumius.ClassRoster.dao.ClassRosterAuditDaoFileImpl"/>
+   		
+   <bean id="serviceLayer" class="com.lumius.ClassRoster.service.ClassRosterServiceLayerImpl">
+   		<constructor-arg ref="classRosterDao"/>
+   		<constructor-arg ref="auditDao"/>
+   </bean>
+   
+   <bean id="controller" class="com.lumius.ClassRoster.controller.ClassRosterController">
+   			<constructor-arg ref="view"/>
+   			<constructor-arg ref ="serviceLayer"
+   			/>
+   </bean>
 </beans>
