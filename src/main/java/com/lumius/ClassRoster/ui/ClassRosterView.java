@@ -11,7 +11,6 @@ import com.lumius.ClassRoster.dao.*;
  * Displays the menu and gets the user's selection
  */
 public class ClassRosterView {
-	private ClassRosterDao dao = new ClassRosterDaoFileImpl();
 	final UserIO io;
 	
 	/**
