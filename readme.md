@@ -3,7 +3,7 @@ A simple CRUD application implementing MVC design pattern and using Spring for d
 The user can construct a class roster by adding, removing, and viewing current students.
 
 # Setup
-##Dependencies
+## Dependencies
 This project requires:
 
 - Maven
